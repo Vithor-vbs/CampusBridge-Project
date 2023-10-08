@@ -1,0 +1,36 @@
+.title-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title-description-box {
+}
+
+.home-title-container {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 7rem;
+  font-weight: 600;
+}
+
+.underlined-text {
+  position: relative;
+}
+
+.underlined-text:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  border-top: solid 8px #00adb5;
+  left: 0;
+  bottom: -10px;
+  border-radius: 50%;
+  height: 15px;
+  z-index: -999;
+}
+
+.home-title-image {
+  height: 50rem;
+}

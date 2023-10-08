@@ -1,0 +1,26 @@
+.AboutUs-section-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.aboutUs-header-box h2 {
+  font-size: 6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.aboutUs-text-box {
+  width: 80rem;
+}
+
+.aboutUs-header-box p {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #6b7586;
+}
+
+.blue-lighter {
+  background-color: #2ac9d1;
+  border-radius: 30px;
+  padding: -15px;
+}
