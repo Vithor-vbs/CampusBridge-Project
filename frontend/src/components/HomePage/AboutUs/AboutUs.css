@@ -1,11 +1,11 @@
 .AboutUs-section-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .aboutUs-header-box h2 {
-  font-size: 6rem;
+  font-size: 4.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -14,9 +14,13 @@
 }
 
 .aboutUs-header-box p {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   color: #6b7586;
+}
+.about-us-image {
+  max-width: 40%;
+  height: auto;
 }
 
 .blue-lighter {

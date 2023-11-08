@@ -11,8 +11,11 @@
   display: flex;
   flex-direction: column;
 
-  font-size: 7rem;
+  font-size: 5.5rem;
   font-weight: 600;
+}
+.title-first-line {
+  white-space: nowrap;
 }
 
 .underlined-text {
@@ -32,5 +35,6 @@
 }
 
 .home-title-image {
-  height: 50rem;
+  max-width: 40%;
+  height: auto;
 }

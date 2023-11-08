@@ -7,12 +7,7 @@ import { ButtonCTA } from "./ButtonCTA";
 export const TitleSection = () => {
   return (
     <section className="title-section">
-      <motion.div
-        className="title-description-box"
-        animate={{ x: 100 }}
-        initial={{ x: -100 }}
-        transition={{ duration: 2 }}
-      >
+      <div className="title-description-box">
         <div className="home-title-container">
           <span className="title-first-line">
             Sua jornada de <span className="underlined-text">impacto</span>
@@ -21,14 +16,12 @@ export const TitleSection = () => {
         </div>
         <DescriptionSection />
         <ButtonCTA />
-      </motion.div>
-      <div>
-        <img
-          src={connectedWorld}
-          className="home-title-image"
-          alt="Mapa mundial"
-        />
       </div>
+      <img
+        src={connectedWorld}
+        className="home-title-image"
+        alt="Mapa mundial"
+      />
     </section>
   );
 };

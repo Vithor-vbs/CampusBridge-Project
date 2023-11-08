@@ -24,7 +24,11 @@ export const AboutUs = () => {
         </div>
       </div>
 
-      <img src={associateImg} alt="association Unifor x Campusbridge" />
+      <img
+        className="about-us-image"
+        src={associateImg}
+        alt="association Unifor x Campusbridge"
+      />
     </section>
   );
 };
