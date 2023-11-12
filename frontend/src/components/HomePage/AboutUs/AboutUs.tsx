@@ -1,11 +1,11 @@
-import associateImg from "../../../assets/associating.png";
+import associateImg from "../../../assets/associating.svg";
 import "./AboutUs.css";
 
 export const AboutUs = () => {
   return (
     <section className="AboutUs-section-container">
       <div className="aboutUs-header-box">
-        <h2>Sobre a CampusBridge</h2>
+        <h2>Sobre nós</h2>
         <div className="aboutUs-text-box">
           <p style={{ marginBottom: "1rem" }}>
             O CampusBridge é uma associação vinculada à Universidade de

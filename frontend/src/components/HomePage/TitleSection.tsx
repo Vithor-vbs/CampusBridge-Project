@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { DescriptionSection } from "./DescriptionSection";
 import "./TitleSection.css";
 import connectedWorld from "../../assets/undraw_connected_world_wuay.svg";

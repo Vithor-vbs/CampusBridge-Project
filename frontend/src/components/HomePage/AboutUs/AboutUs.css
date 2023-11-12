@@ -1,26 +1,32 @@
-.AboutUs-section-container {
+.AboutUs-section-container {  
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
+  align-items: center;      
+              
+}
+
+.aboutUs-header-box {
+  max-width: 65rem;
+  margin-left: 120px;
 }
 
 .aboutUs-header-box h2 {
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;  
 }
-.aboutUs-text-box {
-  width: 80rem;
-}
+/* .aboutUs-text-box {
+    
+} */
 
 .aboutUs-header-box p {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 400;
   color: #6b7586;
 }
 .about-us-image {
-  max-width: 40%;
-  height: auto;
+  width: 50%;
+
 }
 
 .blue-lighter {

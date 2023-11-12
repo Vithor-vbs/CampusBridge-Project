@@ -1,39 +1,14 @@
-import "./Header.css";
 import { Link } from "react-router-dom";
-
 import campusBridgeWhiteLogo from "../../assets/white-name-logo.png";
+import "./Header.css";
 
 interface HeaderSectionProps {
   pageIndex: string;
 }
 
-// const sectionHeroEl = document.querySelector(".section-hero");
-
-// const obs = new IntersectionObserver(
-//   function (entries) {
-//     const ent = entries[0];
-//     console.log(ent);
-
-//     if (ent.isIntersecting === false) {
-//       document.body.classList.add("sticky");
-//     }
-
-//     if (ent.isIntersecting === true) {
-//       document.body.classList.remove("sticky");
-//     }
-//   },
-//   {
-//     // In the viewport
-//     root: null,
-//     threshold: 0,
-//     rootMargin: "-80px",
-//   }
-// );
-// obs.observe(sectionHeroEl);
-
 export function Header(props: HeaderSectionProps) {
   return (
-    <section className="header-section">
+    <section className="header-section sticky">
       <div className="header-container">
         <a className="home-redirect" href="/">
           <img
