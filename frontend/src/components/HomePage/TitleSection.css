@@ -1,21 +1,18 @@
 .title-section {
-  margin-top: 20rem;
+  margin-top: 10rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  transition: padding 0.5s ease; 
-  padding: 4rem 5%; 
+  transition: padding 0.5s ease;
+  padding: 4rem 5%;
 }
 
 .title-section.fixed-header {
   padding: 2rem 5%;
 }
 
-/* .title-description-box {  
-} */
-
 .home-title-container {
-  margin-bottom: 20px; 
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   font-size: 4.5rem;
@@ -46,10 +43,10 @@
 .home-title-image {
   max-width: 40%;
   height: auto;
-  transition: opacity 0.5s ease, transform 0.5s ease; 
-  margin-bottom: 20px; 
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-bottom: 20px;
 }
 
 .title-section.fixed-header .home-title-image {
-  opacity: 0.7; 
+  opacity: 0.7;
 }

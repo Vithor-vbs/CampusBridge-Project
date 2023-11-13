@@ -4,70 +4,82 @@ import styles from "../ButtonCTA.module.css";
 import genericImage from "../../../assets/svg-generic.svg";
 
 export const OportunitiesHome = () => {
-  const [showMore, setShowMore] = useState(false);
+  const [hoveredKey, setHoveredKey] = useState<number | null>(null);
 
-  const opportunitiesList = [
-    {
-      company: "Vortex",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      company: "Coral&co.",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      company: "Dtec",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      company: "Amaro",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },    
-  ];
+  const handleMouseEnter = (key: number) => {
+    setHoveredKey(key);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredKey(null);
+  };
 
   const initialOpportunities = [
     {
+      id: 1,
       company: "Vortex",
       jobTitle: "Desenvolvedor de Software",
       duration: "4 meses",
     },
     {
+      id: 2,
       company: "Coral&co.",
       jobTitle: "Desenvolvedor de Software",
       duration: "4 meses",
     },
     {
+      id: 3,
       company: "Dtec",
       jobTitle: "Desenvolvedor de Software",
       duration: "4 meses",
     },
     {
+      id: 4,
+      company: "Amaro",
+      jobTitle: "Desenvolvedor de Software",
+      duration: "4 meses",
+    },
+    {
+      id: 5,
+      company: "Vortex",
+      jobTitle: "Desenvolvedor de Software",
+      duration: "4 meses",
+    },
+    {
+      id: 6,
+      company: "Coral&co.",
+      jobTitle: "Desenvolvedor de Software",
+      duration: "4 meses",
+    },
+    {
+      id: 7,
+      company: "Dtec",
+      jobTitle: "Desenvolvedor de Software",
+      duration: "4 meses",
+    },
+    {
+      id: 8,
       company: "Amaro",
       jobTitle: "Desenvolvedor de Software",
       duration: "4 meses",
     },
   ];
-
-  const displayedOpportunities = showMore
-    ? [...initialOpportunities, ...opportunitiesList]
-    : initialOpportunities;
-
-  const handleSeeMoreClick = () => {
-    setShowMore(true);
-  };
 
   return (
     <section className="oportunities-home-grid">
       <h2>Nossas Oportunidades</h2>
       <div className="op-grid">
-        {displayedOpportunities.map((opportunity, index) => (
-          <div key={index} className="op-object">
-            <div>
-              <img src={genericImage} alt="" />
+        {initialOpportunities.map((opportunity, index) => (
+          <div
+            key={index}
+            className={`op-object ${
+              opportunity.id === hoveredKey ? "hovered" : ""
+            }`}
+            onMouseEnter={() => handleMouseEnter(opportunity.id)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="grey-mask">
+              <img src={genericImage} alt="" className="op-image" />
               <div className="info">
                 <h3>{opportunity.company}</h3>
                 <p>{opportunity.jobTitle}</p>
@@ -76,15 +88,16 @@ export const OportunitiesHome = () => {
                 </p>
               </div>
             </div>
+            {opportunity.id === hoveredKey && (
+              <button onClick={() => console.log("Button Clicked")}>
+                Leia mais
+              </button>
+            )}
           </div>
         ))}
       </div>
       <div className="see-more">
-        {!showMore && (
-          <button className={styles["button2"]} onClick={handleSeeMoreClick}>
-            See More
-          </button>
-        )}
+        <a href=""></a>
       </div>
     </section>
   );

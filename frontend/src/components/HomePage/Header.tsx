@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import campusBridgeWhiteLogo from "../../assets/white-name-logo.png";
+import campusBridgeWhiteLogo from "../../assets/CampusBridge-vectorized.svg";
 import "./Header.css";
 
 interface HeaderSectionProps {
@@ -22,14 +22,14 @@ export function Header(props: HeaderSectionProps) {
           <Link to="/Oportunidades" className="properties-name">
             Projetos
           </Link>
-          <Link
-            to="/Carreira"
+          <a
+            href="#aboutUs"
             className={`properties-name ${
               props.pageIndex === "aboutUs" ? "pageIndex-modified" : ""
             }`}
           >
             Sobre nós
-          </Link>
+          </a>
           <Link
             to="/Perfil"
             className={`properties-name ${

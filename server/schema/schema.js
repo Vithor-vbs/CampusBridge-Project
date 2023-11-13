@@ -84,6 +84,15 @@ const mutation = new GraphQLObjectType({
         return;
       },
     },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parentValue, args) {
+        return;
+      },
+    },
   },
 });
 

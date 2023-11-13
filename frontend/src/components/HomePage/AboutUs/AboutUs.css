@@ -1,8 +1,7 @@
-.AboutUs-section-container {  
+.AboutUs-section-container {
   display: flex;
   justify-content: space-around;
-  align-items: center;      
-              
+  align-items: center;
 }
 
 .aboutUs-header-box {
@@ -13,7 +12,7 @@
 .aboutUs-header-box h2 {
   font-size: 4rem;
   font-weight: 600;
-  margin-bottom: 1rem;  
+  margin-bottom: 1rem;
 }
 /* .aboutUs-text-box {
     
@@ -25,8 +24,7 @@
   color: #6b7586;
 }
 .about-us-image {
-  width: 50%;
-
+  width: 40%;
 }
 
 .blue-lighter {

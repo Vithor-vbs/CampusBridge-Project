@@ -1,35 +1,66 @@
-.oportunities-home-grid {  
-    margin-top: 13rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;                
-    flex-direction: column;    
+.oportunities-home-grid {
+  margin-top: 10rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
 }
 
-h2{
+h2 {
   font-weight: 600;
   font-size: 4rem;
   margin-bottom: 3rem;
 }
 
-.see-more {  
+.see-more {
   padding: 3rem;
 }
 
 .op-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   padding: 0.5rem;
   margin: 0 auto;
-  
+  width: 60%;
 }
 
-.op-object {  
+.op-object {
   background-color: #f4f5f7;
+  position: relative;
 }
 
-.info{
+.grey-mask:hover {
+  filter: brightness(0.7);
+}
+
+.op-object button {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 15px;
+  background-color: #00adb5;
+  white-space: nowrap;
+
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.op-object button:hover {
+  background-color: #fff;
+  color: #00adb5;
+  border: 1px solid #00adb5;
+  filter: none;
+  z-index: 999;
+}
+
+.op-image {
+  width: 100%;
+}
+
+.info {
   padding: 1rem;
   display: flex;
   flex-direction: column;
