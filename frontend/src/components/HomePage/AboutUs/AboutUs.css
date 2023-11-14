@@ -14,12 +14,12 @@
   font-weight: 600;
   margin-bottom: 1rem;
 }
-/* .aboutUs-text-box {
-    
-} */
+.aboutUs-text-box {
+  word-spacing: 1.5px;
+}
 
 .aboutUs-header-box p {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: #6b7586;
 }
@@ -28,7 +28,7 @@
 }
 
 .blue-lighter {
-  background-color: #2ac9d1;
+  background-color: #d5f1f1;
   border-radius: 30px;
   padding: -15px;
 }

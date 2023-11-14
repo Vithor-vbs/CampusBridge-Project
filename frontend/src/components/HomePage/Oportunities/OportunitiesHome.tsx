@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./OportunitiesHome.css";
-import styles from "../ButtonCTA.module.css";
 import genericImage from "../../../assets/svg-generic.svg";
+import { BsArrowRightShort } from "react-icons/bs";
 
 export const OportunitiesHome = () => {
   const [hoveredKey, setHoveredKey] = useState<number | null>(null);
@@ -97,7 +97,9 @@ export const OportunitiesHome = () => {
         ))}
       </div>
       <div className="see-more">
-        <a href=""></a>
+        <a href="/oportunitidades" className="properties-name op-adjust">
+          <span>mostrar mais</span> <BsArrowRightShort size="1.5rem" />
+        </a>
       </div>
     </section>
   );

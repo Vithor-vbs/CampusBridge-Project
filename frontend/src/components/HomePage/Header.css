@@ -52,7 +52,7 @@
   font-weight: 500;
   text-decoration: none;
   color: #252525;
-  transition: color 0.3s ease; /* Adicionando transição suave para a cor do texto */
+  transition: color 0.3s ease; 
 }
 
 .properties-name:after {

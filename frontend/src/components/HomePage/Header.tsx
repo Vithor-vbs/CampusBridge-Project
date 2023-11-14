@@ -20,7 +20,7 @@ export function Header(props: HeaderSectionProps) {
 
         <div className="header-properties-box">
           <Link to="/Oportunidades" className="properties-name">
-            Projetos
+            Oportunidades
           </Link>
           <a
             href="#aboutUs"

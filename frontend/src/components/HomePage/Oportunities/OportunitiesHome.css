@@ -1,9 +1,11 @@
 .oportunities-home-grid {
-  margin-top: 10rem;
+  margin-top: 8rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  background-color: #ddeeee;
+  padding: 4rem 0 4rem 0;
 }
 
 h2 {
@@ -12,8 +14,17 @@ h2 {
   margin-bottom: 3rem;
 }
 
+.op-adjust {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
 .see-more {
-  padding: 3rem;
+  margin-top: 3rem;
 }
 
 .op-grid {
@@ -28,9 +39,15 @@ h2 {
 .op-object {
   background-color: #f4f5f7;
   position: relative;
+  overflow: hidden;
+}
+.op-object:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.075);
+  transform: translateY(-0.5rem);
 }
 
-.grey-mask:hover {
+.grey-mask:hover,
+.op-object.hovered .grey-mask {
   filter: brightness(0.7);
 }
 

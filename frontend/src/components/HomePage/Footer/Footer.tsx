@@ -21,7 +21,7 @@ export function Footer() {
         <p className={styles["address"]}>
           Av. Washington Soares, 1321 - Edson Queiroz, Fortaleza - CE, 60811-905
         </p>
-        <a>Home</a>
+        <a href="/">Home</a>
         <a>Politicas de Privacidade</a>
       </div>
       <div className={styles.grid}>
