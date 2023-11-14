@@ -1,0 +1,15 @@
+.slides-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .slides-container {
+  display: block;
+} */
+
+.slides-container h2 {
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  transform: translateX(-6rem);
+}

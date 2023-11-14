@@ -4,6 +4,7 @@ import styles from "./Home.module.css";
 import { TitleSection } from "./TitleSection";
 import { OportunitiesHome } from "./Oportunities/OportunitiesHome";
 import { Footer } from "./Footer/Footer";
+import { CarouselSection } from "./Carousel/CarouselSection";
 
 export const Home = () => {
   return (
@@ -11,6 +12,7 @@ export const Home = () => {
       <Header pageIndex="home" />
       <section className={styles["home-section"]}>
         <TitleSection />
+        <CarouselSection />
         <OportunitiesHome />
         <AboutUs />
         <Footer />
