@@ -14,7 +14,7 @@ export const TitleSection = () => {
           <span className="title-sec-line">começa aqui</span>
         </div>
         <DescriptionSection />
-        <ButtonCTA />
+        <ButtonCTA text="Veja as Oportunidades" />
       </div>
       <img
         src={connectedWorld}

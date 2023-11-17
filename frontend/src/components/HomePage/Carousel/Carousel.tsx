@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import {
+  IoIosArrowDroprightCircle,
+  IoIosArrowDropleftCircle,
+} from "react-icons/io";
 
 import "./Carousel.css";
 
@@ -20,7 +23,10 @@ export const Carousel: React.FC<CarouselProps> = ({ data }) => {
 
   return (
     <div className="carousel">
-      <BsArrowLeftCircleFill onClick={prevSlide} className="arrow arrow-left" />
+      <IoIosArrowDropleftCircle
+        onClick={prevSlide}
+        className="arrow arrow-left"
+      />
       {data.map((item, idx) => (
         <img
           src={item.src}
@@ -29,7 +35,7 @@ export const Carousel: React.FC<CarouselProps> = ({ data }) => {
           className={slide === idx ? "slide" : "slide slide-hidden"}
         />
       ))}
-      <BsArrowRightCircleFill
+      <IoIosArrowDroprightCircle
         onClick={nextSlide}
         className="arrow arrow-right"
       />

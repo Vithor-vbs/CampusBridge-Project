@@ -1,9 +1,15 @@
 import styles from "./ButtonCTA.module.css";
 
-export const ButtonCTA = () => {
+type props = {
+  text: string;
+};
+
+export const ButtonCTA = ({ text }: props) => {
   return (
     <div className="button-cta-box">
-      <button className={styles["button2"]}>Veja as oportunidades</button>
+      <button type="submit" className={styles["button2"]}>
+        {text}
+      </button>
     </div>
   );
 };

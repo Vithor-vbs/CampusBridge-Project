@@ -31,7 +31,7 @@ export function Footer() {
       </div>
       <div className={styles.grid}>
         <div className={styles.blanc}></div>
-        <a>Sobre</a>
+        <a href="/#aboutUs">Sobre</a>
       </div>
       <div className={styles.grid}>
         <div></div>
