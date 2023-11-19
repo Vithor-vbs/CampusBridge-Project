@@ -1,0 +1,34 @@
+.section-container {
+  margin-top: 6rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a6e8dc;
+  height: 16rem;
+}
+
+.header-container h2 {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+.bold-link {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.header-flex p {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.2rem;
+}

@@ -11,6 +11,7 @@
   background: #e8e8e8;
   border: 1px solid #e8e8e8;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button2:active {

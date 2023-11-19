@@ -97,7 +97,7 @@ export const OportunitiesHome = () => {
         ))}
       </div>
       <div className="see-more">
-        <a href="/oportunitidades" className="properties-name op-adjust">
+        <a href="/oportunidades" className="properties-name op-adjust">
           <span>mostrar mais</span> <BsArrowRightShort size="1.5rem" />
         </a>
       </div>

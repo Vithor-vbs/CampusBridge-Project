@@ -2,14 +2,15 @@ import styles from "./ButtonCTA.module.css";
 
 type props = {
   text: string;
+  linkTo?: string;
 };
 
-export const ButtonCTA = ({ text }: props) => {
+export const ButtonCTA = ({ text, linkTo }: props) => {
   return (
     <div className="button-cta-box">
-      <button type="submit" className={styles["button2"]}>
+      <a href={linkTo} type="submit" className={styles["button2"]}>
         {text}
-      </button>
+      </a>
     </div>
   );
 };

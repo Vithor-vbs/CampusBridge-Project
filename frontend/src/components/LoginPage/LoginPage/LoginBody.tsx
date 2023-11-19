@@ -32,7 +32,7 @@ export const LoginBody: React.FC<FormProps> = () => {
             /> */}
           </div>
           <div className={styles["cta-login-box"]}>
-            <ButtonCTA text={"Entrar"} />
+            <ButtonCTA linkTo={"/home"} text={"Entrar"} />
             <a href="/registro">Não tem conta? Registre-se aqui</a>
           </div>
         </form>

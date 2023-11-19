@@ -19,11 +19,16 @@ export function Header(props: HeaderSectionProps) {
         </a>
 
         <div className="header-properties-box">
-          <Link to="/Oportunidades" className="properties-name">
-            Oportunidades
-          </Link>
           <a
-            href="#aboutUs"
+            href="/oportunidades"
+            className={`properties-name ${
+              props.pageIndex === "oportunidades" ? "pageIndex-modified" : ""
+            }`}
+          >
+            Oportunidades
+          </a>
+          <a
+            href="/#aboutUs"
             className={`properties-name ${
               props.pageIndex === "aboutUs" ? "pageIndex-modified" : ""
             }`}
@@ -40,9 +45,9 @@ export function Header(props: HeaderSectionProps) {
           </Link>
         </div>
         <Link
-          to="/contact"
+          to="/contato"
           className={`properties-name ${
-            props.pageIndex === "careers" ? "pageIndex-modified" : ""
+            props.pageIndex === "contato" ? "pageIndex-modified" : ""
           }`}
         >
           Contate-nos
