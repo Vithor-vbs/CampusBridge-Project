@@ -30,3 +30,17 @@
   gap: 0.3rem;
   font-size: 1.2rem;
 }
+
+.contactus-grid {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 4rem 0 4rem 0;
+}
+
+.form-info-container {
+  display: flex;
+  align-items: flex-start;
+}
