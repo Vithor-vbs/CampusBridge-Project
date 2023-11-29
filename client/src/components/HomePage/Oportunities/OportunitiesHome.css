@@ -1,0 +1,85 @@
+.oportunities-home-grid {
+  margin-top: 8rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ddeeee;
+  padding: 4rem 0 4rem 0;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+
+.op-adjust {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.see-more {
+  margin-top: 3rem;
+}
+
+.op-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  padding: 0.5rem;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.op-object {
+  background-color: #f4f5f7;
+  position: relative;
+  overflow: hidden;
+}
+.op-object:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.075);
+  transform: translateY(-0.5rem);
+}
+
+.grey-mask:hover,
+.op-object.hovered .grey-mask {
+  filter: brightness(0.7);
+}
+
+.op-object button {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 15px;
+  background-color: #00adb5;
+  white-space: nowrap;
+
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.op-object button:hover {
+  background-color: #fff;
+  color: #00adb5;
+  border: 1px solid #00adb5;
+  filter: none;
+  z-index: 999;
+}
+
+.op-image {
+  width: 100%;
+}
+
+.info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
