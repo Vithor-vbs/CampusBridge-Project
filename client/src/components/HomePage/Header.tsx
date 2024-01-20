@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
 import campusBridgeWhiteLogo from "../../assets/CampusBridge-vectorized.svg";
 import "./Header.css";
+import { useMutation } from "@apollo/client";
+import { LOGOUT } from "../../GraphQL/Mutations";
 
 interface HeaderSectionProps {
   pageIndex: string;
 }
 
 export function Header(props: HeaderSectionProps) {
+  const [logout] = useMutation(LOGOUT, {
+    onCompleted: (data) => {
+      window.location.href = "/login";
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const logoutUser = () => {
+    logout();
+  };
+
   return (
     <section className="header-section sticky">
       <div className="header-container">
@@ -35,14 +50,17 @@ export function Header(props: HeaderSectionProps) {
           >
             Sobre nós
           </a>
-          <Link
+          {/* <Link
             to="/Perfil"
             className={`properties-name ${
               props.pageIndex === "projects" ? "pageIndex-modified" : ""
             }`}
           >
             Perfil
-          </Link>
+          </Link> */}
+          <div onClick={logoutUser} className="properties-name">
+            Logout
+          </div>
         </div>
         <Link
           to="/contato"

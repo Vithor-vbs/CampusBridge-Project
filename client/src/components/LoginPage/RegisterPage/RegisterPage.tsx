@@ -1,9 +1,9 @@
-// import { RegisterBody } from "./RegisterBody";
+import { RegisterBody } from "./RegisterBody";
 
-// export const RegisterPage = () => {
-//   return (
-//     <>
-//       <RegisterBody />
-//     </>
-//   );
-// };
+export const RegisterPage = () => {
+  return (
+    <>
+      <RegisterBody />
+    </>
+  );
+};

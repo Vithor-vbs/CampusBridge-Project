@@ -12,7 +12,7 @@ const mutation = new GraphQLObjectType({
       args: {
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
-        fistName: { type: GraphQLString },
+        firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
       },
       resolve(parentValue, { email, password }, req) {

@@ -7,6 +7,7 @@ const passport = require("passport");
 const passportConfig = require("./services/auth.js");
 const MongoStore = require("connect-mongo")(session);
 const schema = require("./schema/schema.js");
+const cors = require("cors");
 
 // Create a new Express application
 const app = express();
@@ -57,6 +58,9 @@ app.use(passport.session());
 
 // Instruct Express to pass on any request made to the '/graphql' route
 // to the GraphQL instance.
+
+app.use(cors({ origin: "http://localhost:5000", credentials: true }));
+
 app.use(
   "/graphql",
   expressGraphQL({
@@ -69,7 +73,7 @@ const path = require("path");
 app.use(express.static(path.resolve(__dirname, "../../client/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../../client/dist/index.html"));
+  res.sendFile(path.resolve(__dirname, "../../client/dist", "index.html"));
 });
 
 module.exports = app;
