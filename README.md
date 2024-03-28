@@ -8,5 +8,8 @@ Through CampusBridge, students can access real-world projects in various fields,
 
 By connecting students with impactful volunteer projects, CampusBridge not only enriches their academic journey but also cultivates a sense of social responsibility and fosters the next generation of leaders committed to creating positive change in the world.
 
+
 #### WORK IN PROGRESS  
 ![image](https://github.com/Vithor-vbs/CampusBridge-Project/assets/69211568/17ab98a0-a629-4547-a51d-a733b5d1dfef)
+
+Check out the figma [mock](https://www.figma.com/file/wnPXwJGfeM5MFHHah3qQUu/CampusBridge-draft?type=design&node-id=0%3A1&mode=design&t=oZTkJG5Lp9lZn1tB-1) of the full application
