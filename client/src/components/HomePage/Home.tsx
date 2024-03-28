@@ -7,14 +7,17 @@ import { Footer } from "./Footer/Footer";
 import { CarouselSection } from "./Carousel/CarouselSection";
 import { useQuery } from "@apollo/client";
 import { GET_USER } from "../../GraphQL/Queries";
+import { useNavigate } from "react-router";
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   const { loading, error, data } = useQuery(GET_USER);
 
   if (!loading) {
     console.log(data);
-    if (data.getUser == null || error) {
-      window.location.href = "/login";
+    if (!data || error) {
+      navigate("/login");
     }
   }
 
