@@ -12,7 +12,26 @@ import { useNavigate } from "react-router";
 export const Home = () => {
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(GET_USER);
+  interface User {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+  }
+
+  interface QueryResult {
+    loading: boolean;
+    error?: Error;
+    data:
+      | {
+          getUser: User;
+        }
+      | undefined;
+  }
+
+  const result: QueryResult = useQuery(GET_USER);
+
+  const { loading, error, data } = result;
 
   if (!loading) {
     console.log(data);
@@ -25,7 +44,7 @@ export const Home = () => {
     <>
       <Header pageIndex="home" />
       <section className={styles["home-section"]}>
-        <TitleSection />
+        <TitleSection getUser={data?.getUser} />
         <CarouselSection />
         <OportunitiesHome />
         <AboutUs />

@@ -69,7 +69,7 @@ export const OportunitiesHome = () => {
     <section className="oportunities-home-grid">
       <h2>Nossas Oportunidades</h2>
       <div className="op-grid">
-        {initialOpportunities.map((opportunity, index) => (
+        {initialOpportunities.slice(0, 8).map((opportunity, index) => (
           <div
             key={index}
             className={`op-object ${
