@@ -17,7 +17,7 @@ interface UserDataProps {
 export const TitleSection = (props: UserDataProps) => {
   return (
     <section className="title-section">
-      {props.getUser && (
+      {props.getUser?.firstName && (
         <p className="welcome-back-message">
           Bom te ver de novo, <span>{props.getUser.firstName}</span>
         </p>
