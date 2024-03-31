@@ -116,3 +116,10 @@
   display: flex;
   justify-content: space-between;
 }
+.op-filters ul li span {
+  cursor: pointer;
+}
+
+.op-filter-clicked {
+  color: #00adb5;
+}

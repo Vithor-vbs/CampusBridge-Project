@@ -9,7 +9,9 @@ const OpportunityType = new GraphQLObjectType({
     duration: { type: new GraphQLNonNull(GraphQLString) },
     jobTitle: { type: new GraphQLNonNull(GraphQLString) },
     description: { type: GraphQLString },
-    Image: { type: GraphQLString },
+    area: { type: GraphQLString },
+    tags: { type: new graphql.GraphQLList(GraphQLString) },
+    image: { type: GraphQLString },
   },
 });
 

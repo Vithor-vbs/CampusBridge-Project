@@ -2,100 +2,65 @@ import "./OpportunitiesContent.css";
 import sampleImage from "../../assets/image-example.png";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaCalendar } from "react-icons/fa";
+import { useQuery } from "@apollo/client";
+import { GET_OPORTUNITIES } from "../../GraphQL/Queries";
+import { Opportunity } from "../types";
+import { useState } from "react";
 
 export const OpportunitiesContent = () => {
-  // const pageSize = 10;
-  const sampleOpportunities = [
-    {
-      id: 1,
-      company: "Vortex",
-      jobTitle: "Desenvolvedor de Software na Mdiasbranco",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
+  const { loading, error, data } = useQuery(GET_OPORTUNITIES);
+  if (error) {
+    throw new Error(`Error! ${error.message}`);
+  }
 
-      duration: "4 meses",
-    },
-    {
-      id: 2,
-      company: "Coral&co.",
-      jobTitle: "Desenvolvedor de Software",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
+  const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
-      duration: "4 meses",
-    },
-    {
-      id: 3,
-      company: "Dtec",
-      jobTitle: "Desenvolvedor de Software",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
+  const handleFilterClick = (area: string) => {
+    setSelectedArea(area);
+  };
 
-      duration: "4 meses",
-    },
-    {
-      id: 4,
-      company: "Amaro",
-      jobTitle: "Desenvolvedor de Software",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
+  let uniqueAreas: string[] = [];
 
-      duration: "4 meses",
-    },
-    {
-      id: 5,
-      company: "Vortex",
-      jobTitle: "Desenvolvedor de Software",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
+  if (!loading && data) {
+    uniqueAreas = Array.from(
+      new Set(
+        data.getOpportunities.map(
+          (opportunity: Opportunity) => opportunity.area
+        )
+      )
+    );
+  }
 
-      duration: "4 meses",
-      // },
-      // {
-      //   id: 6,
-      //   company: "Coral&co.",
-      //   jobTitle: "Desenvolvedor de Software",
-      //   description:
-      //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
-
-      //   duration: "4 meses",
-      // },
-      // {
-      //   id: 7,
-      //   company: "Dtec",
-      //   jobTitle: "Desenvolvedor de Software",
-      //   description:
-      //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
-      //   duration: "4 meses",
-      // },
-      // {
-      //   id: 8,
-      //   company: "Amaro",
-      //   jobTitle: "Desenvolvedor de Software",
-      //   description:
-      //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit impedit quaerat ea. Eum numquam eius tenetur dicta incidunt sunt quo earum. Amet sapiente perspiciatis aspernatur. Obcaecati, nobis? Totam, qui excepturi.",
-
-      //   duration: "4 meses",
-    },
-  ];
   return (
     <section className="op-content-section">
       <div className="op-content-box">
-        {sampleOpportunities.map((opportunity) => (
-          <div className="op-item-box" key={opportunity.id}>
-            <h2>{opportunity.jobTitle}</h2>
-            <img src={sampleImage} alt="" />
-            <p className="op-content-description">{opportunity.description}</p>
-            <div className="op-content-bottom">
-              <a href="/oportunidades" className="properties-name op-adjust">
-                <span>mostrar mais</span> <BsArrowRightShort size="1.5rem" />
-              </a>
-              <p>
-                <FaCalendar /> <span>{opportunity.duration}</span>
-              </p>
-            </div>
-          </div>
-        ))}
+        {!loading &&
+          data.getOpportunities
+            .filter(
+              (opportunity: Opportunity) =>
+                !selectedArea || opportunity.area === selectedArea
+            )
+            .map((opportunity: Opportunity) => (
+              <div className="op-item-box" key={opportunity.id}>
+                <h2>{opportunity.jobTitle}</h2>
+                <img src={sampleImage} alt="" />
+                <p className="op-content-description">
+                  {opportunity.description}
+                </p>
+                <div className="op-content-bottom">
+                  <a
+                    href="/oportunidades"
+                    className="properties-name op-adjust"
+                  >
+                    <span>mostrar mais</span>{" "}
+                    <BsArrowRightShort size="1.5rem" />
+                  </a>
+                  <p>
+                    <FaCalendar /> <span>{opportunity.duration}</span>
+                  </p>
+                </div>
+              </div>
+            ))}
       </div>
       <div className={"form-group"}>
         <input
@@ -105,24 +70,28 @@ export const OpportunitiesContent = () => {
           name="email"
           required
         />
+
         <div className="op-filters">
           <h3>Filtros</h3>
           <ul>
-            <li>
-              <span>Engenharia de software</span> <p>2</p>
-            </li>
-            <li>
-              <span>Design</span> <p>1</p>
-            </li>
-            <li>
-              <span>Arquitetura</span> <p>4</p>
-            </li>
-            <li>
-              <span>Marketing</span> <p>5</p>
-            </li>
-            <li>
-              <span>TI</span> <p>14</p>
-            </li>
+            {uniqueAreas
+              .filter((area) => Boolean(area)) // filter out falsy values
+              .map((area, index) => (
+                <li
+                  className={selectedArea === area ? "op-filter-clicked" : ""}
+                  key={index}
+                  onClick={() => handleFilterClick(area)}
+                >
+                  <span>{area}</span>
+                  <p>
+                    {
+                      data.getOpportunities.filter(
+                        (opportunity: Opportunity) => opportunity.area === area
+                      ).length
+                    }
+                  </p>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
