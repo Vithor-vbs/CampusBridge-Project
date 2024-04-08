@@ -3,7 +3,7 @@ import "./OportunitiesHome.css";
 import genericImage from "../../../assets/svg-generic.svg";
 import { BsArrowRightShort } from "react-icons/bs";
 import { useQuery } from "@apollo/client";
-import { GET_OPORTUNITIES } from "../../../GraphQL/Queries";
+import { GET_FILTERED_OPORTUNITIES } from "../../../GraphQL/Queries";
 
 import { Opportunity } from "../../types";
 
@@ -18,7 +18,7 @@ export const OportunitiesHome = () => {
     setHoveredKey(null);
   };
 
-  const { loading, error, data } = useQuery(GET_OPORTUNITIES, {
+  const { loading, error, data } = useQuery(GET_FILTERED_OPORTUNITIES, {
     variables: { limit: 8, offset: 0 },
   });
   if (error) {
@@ -32,7 +32,7 @@ export const OportunitiesHome = () => {
         {loading && !error ? (
           <>Loading</>
         ) : (
-          data.getOpportunities.map(
+          data.getFilteredOpportunities.opportunities.map(
             (opportunity: Opportunity, index: number) => (
               <div
                 key={index}

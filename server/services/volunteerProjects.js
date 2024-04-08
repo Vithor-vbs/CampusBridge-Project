@@ -38,10 +38,21 @@ const getOpportunity = async (id) => {
   }
 };
 
-const getOpportunities = async (limit, offset) => {
+const getFilteredOpportunities = async (limit, offset) => {
   try {
     const opportunities = await Opportunity.find().skip(offset).limit(limit);
-    return opportunities;
+    const totalCount = await Opportunity.countDocuments();
+    return { opportunities, totalCount };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllOpportunities = async () => {
+  try {
+    const opportunities = await Opportunity.find();
+    const totalCount = await Opportunity.countDocuments();
+    return { opportunities, totalCount };
   } catch (error) {
     throw error;
   }
@@ -88,7 +99,8 @@ const updateOpportunity = async ({
 
 module.exports = {
   createOpportunity,
-  getOpportunities,
+  getAllOpportunities,
+  getFilteredOpportunities,
   getOpportunity,
   deleteOpportunity,
   updateOpportunity,

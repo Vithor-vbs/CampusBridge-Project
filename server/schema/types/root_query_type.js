@@ -10,6 +10,14 @@ const UserType = require("./user_type");
 const OpportunityType = require("./opportunity_type");
 const OpportunityService = require("../../services/volunteerProjects");
 
+const OpportunitiesResultType = new GraphQLObjectType({
+  name: "OpportunitiesResult",
+  fields: {
+    opportunities: { type: new GraphQLList(OpportunityType) },
+    totalCount: { type: GraphQLInt },
+  },
+});
+
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -19,14 +27,24 @@ const RootQueryType = new GraphQLObjectType({
         return req.user;
       },
     },
-    getOpportunities: {
-      type: new GraphQLList(OpportunityType),
+    getFilteredOpportunities: {
+      type: OpportunitiesResultType,
       args: {
         offset: { type: GraphQLInt },
         limit: { type: GraphQLInt },
       },
       resolve(parentValue, args) {
-        return OpportunityService.getOpportunities(args.limit, args.offset);
+        return OpportunityService.getFilteredOpportunities(
+          args.limit,
+          args.offset
+        );
+      },
+    },
+
+    getAllOpportunities: {
+      type: OpportunitiesResultType,
+      resolve(parentValue) {
+        return OpportunityService.getAllOpportunities();
       },
     },
 

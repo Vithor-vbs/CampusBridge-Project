@@ -11,9 +11,26 @@ export const GET_USER = gql`
   }
 `;
 
+export const GET_FILTERED_OPORTUNITIES = gql`
+  query getFilteredOpportunities($limit: Int!, $offset: Int!) {
+    getFilteredOpportunities(limit: $limit, offset: $offset) {
+      opportunities {
+        id
+        company
+        duration
+        jobTitle
+        description
+        area
+        tags
+      }
+      totalCount
+    }
+  }
+`;
+
 export const GET_OPORTUNITIES = gql`
-  query getOpportunities($limit: Int!, $offset: Int!) {
-    getOpportunities(limit: $limit, offset: $offset) {
+  query getOpportunities {
+    getOpportunities {
       id
       company
       duration

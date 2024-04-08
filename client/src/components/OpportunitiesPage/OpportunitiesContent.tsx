@@ -3,7 +3,7 @@ import sampleImage from "../../assets/image-example.png";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaCalendar } from "react-icons/fa";
 import { useQuery } from "@apollo/client";
-import { GET_OPORTUNITIES } from "../../GraphQL/Queries";
+import { GET_FILTERED_OPORTUNITIES } from "../../GraphQL/Queries";
 import { Opportunity } from "../types";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ interface OpportunitiesContentProps {
 export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
   const PAGE_SIZE = 8;
 
-  const { loading, error, data } = useQuery(GET_OPORTUNITIES, {
+  const { loading, error, data } = useQuery(GET_FILTERED_OPORTUNITIES, {
     variables: { limit: PAGE_SIZE, offset: page * PAGE_SIZE },
   });
   if (error) {
@@ -32,7 +32,7 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
   if (!loading && data) {
     uniqueAreas = Array.from(
       new Set(
-        data.getOpportunities.map(
+        data.getFilteredOpportunities.opportunities.map(
           (opportunity: Opportunity) => opportunity.area
         )
       )
@@ -43,7 +43,7 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
     <section className="op-content-section">
       <div className="op-content-box">
         {!loading &&
-          data.getOpportunities
+          data.getFilteredOpportunities.opportunities
             .filter(
               (opportunity: Opportunity) =>
                 !selectedArea || opportunity.area === selectedArea
@@ -93,7 +93,7 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
                   <span>{area}</span>
                   <p>
                     {
-                      data.getOpportunities.filter(
+                      data.getFilteredOpportunities.opportunities.filter(
                         (opportunity: Opportunity) => opportunity.area === area
                       ).length
                     }
