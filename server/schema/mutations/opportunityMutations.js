@@ -16,12 +16,17 @@ const OpportunityMutations = {
       description: { type: GraphQLString },
       image: { type: GraphQLString },
     },
-    resolve(parentValue, { company, duration, jobTitle, description, Image }) {
+    resolve(
+      parentValue,
+      { company, duration, jobTitle, description, image, area, tags }
+    ) {
       return OpportunityService.createOpportunity({
         company,
         duration,
         jobTitle,
         description,
+        area,
+        tags,
         image,
       });
     },

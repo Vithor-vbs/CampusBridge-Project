@@ -1,14 +1,50 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Home } from "./components/HomePage/Home";
-import { LoginPage } from "./components/LoginPage/LoginPage/LoginPage";
-import { RegisterPage } from "./components/LoginPage/RegisterPage/RegisterPage";
-import { ContactUsPage } from "./components/ContactUsPage/ContactUsPage";
-import { OpportunitiesPage } from "./components/OpportunitiesPage/OpportunitiesPage";
-import { Vacancy } from "./components/VacancyPage/Vacancy";
+import {
+  Home,
+  LoginPage,
+  RegisterPage,
+  ContactUsPage,
+  OpportunitiesPage,
+  Vacancy,
+} from "./components/index";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "./GraphQL/Queries";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 export default function transition() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  interface User {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+  }
+
+  interface QueryResult {
+    loading: boolean;
+    error?: Error;
+    data:
+      | {
+          getUser: User;
+        }
+      | undefined;
+  }
+
+  const { loading, error, data }: QueryResult = useQuery(GET_USER);
+
+  useEffect(() => {
+    if (!loading) {
+      console.log("data", data);
+      if (!data?.getUser || error) {
+        navigate("/login");
+      }
+    }
+  }, [loading, data, error]);
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>

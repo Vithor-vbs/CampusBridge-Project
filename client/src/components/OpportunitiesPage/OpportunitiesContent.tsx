@@ -7,8 +7,16 @@ import { GET_OPORTUNITIES } from "../../GraphQL/Queries";
 import { Opportunity } from "../types";
 import { useState } from "react";
 
-export const OpportunitiesContent = () => {
-  const { loading, error, data } = useQuery(GET_OPORTUNITIES);
+interface OpportunitiesContentProps {
+  page: number;
+}
+
+export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
+  const PAGE_SIZE = 8;
+
+  const { loading, error, data } = useQuery(GET_OPORTUNITIES, {
+    variables: { limit: PAGE_SIZE, offset: page * PAGE_SIZE },
+  });
   if (error) {
     throw new Error(`Error! ${error.message}`);
   }
@@ -16,7 +24,7 @@ export const OpportunitiesContent = () => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
   const handleFilterClick = (area: string) => {
-    setSelectedArea(area);
+    setSelectedArea((prevArea) => (prevArea === area ? null : area));
   };
 
   let uniqueAreas: string[] = [];

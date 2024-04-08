@@ -12,6 +12,7 @@ interface FormProps {}
 export const LoginBody: React.FC<FormProps> = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [mutationError, setMutationError] = useState<boolean | null>(null);
 
   const { loading, error, data } = useQuery(GET_USER);
   useEffect(() => {
@@ -30,6 +31,7 @@ export const LoginBody: React.FC<FormProps> = () => {
       }
     },
     onError: (error) => {
+      setMutationError(true);
       console.log(error.message);
     },
   });
@@ -71,6 +73,9 @@ export const LoginBody: React.FC<FormProps> = () => {
                 setPwd(e.target.value);
               }}
             />
+            {mutationError && (
+              <p className={styles["error-message"]}>Credenciais inválidas</p>
+            )}
           </div>
           <div className={styles["cta-login-box"]}>
             <ButtonCTA text={"Entrar"} action={loginUser} />

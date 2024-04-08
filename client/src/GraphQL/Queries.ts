@@ -12,8 +12,8 @@ export const GET_USER = gql`
 `;
 
 export const GET_OPORTUNITIES = gql`
-  query {
-    getOpportunities {
+  query getOpportunities($limit: Int!, $offset: Int!) {
+    getOpportunities(limit: $limit, offset: $offset) {
       id
       company
       duration

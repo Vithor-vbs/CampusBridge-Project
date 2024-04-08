@@ -7,3 +7,20 @@ export interface Opportunity {
   area: string;
   tags: string[];
 }
+
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface UserQueryResult {
+  loading: boolean;
+  error?: Error;
+  data:
+    | {
+        getUser: User;
+      }
+    | undefined;
+}

@@ -1,6 +1,11 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLNonNull } =
-  graphql;
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLNonNull,
+} = graphql;
 const UserType = require("./user_type");
 const OpportunityType = require("./opportunity_type");
 const OpportunityService = require("../../services/volunteerProjects");
@@ -16,8 +21,12 @@ const RootQueryType = new GraphQLObjectType({
     },
     getOpportunities: {
       type: new GraphQLList(OpportunityType),
-      resolve() {
-        return OpportunityService.getOpportunities();
+      args: {
+        offset: { type: GraphQLInt },
+        limit: { type: GraphQLInt },
+      },
+      resolve(parentValue, args) {
+        return OpportunityService.getOpportunities(args.limit, args.offset);
       },
     },
 

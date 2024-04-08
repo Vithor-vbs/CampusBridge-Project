@@ -18,61 +18,12 @@ export const OportunitiesHome = () => {
     setHoveredKey(null);
   };
 
-  const { loading, error, data } = useQuery(GET_OPORTUNITIES);
+  const { loading, error, data } = useQuery(GET_OPORTUNITIES, {
+    variables: { limit: 8, offset: 0 },
+  });
   if (error) {
     throw new Error(`Error! ${error.message}`);
   }
-
-  const initialOpportunities = [
-    {
-      id: 1,
-      company: "Vortex",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 2,
-      company: "Coral&co.",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 3,
-      company: "Dtec",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 4,
-      company: "Amaro",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 5,
-      company: "Vortex",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 6,
-      company: "Coral&co.",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 7,
-      company: "Dtec",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-    {
-      id: 8,
-      company: "Amaro",
-      jobTitle: "Desenvolvedor de Software",
-      duration: "4 meses",
-    },
-  ];
 
   return (
     <section className="oportunities-home-grid">
@@ -81,9 +32,8 @@ export const OportunitiesHome = () => {
         {loading && !error ? (
           <>Loading</>
         ) : (
-          data.getOpportunities
-            .slice(0, 8)
-            .map((opportunity: Opportunity, index: number) => (
+          data.getOpportunities.map(
+            (opportunity: Opportunity, index: number) => (
               <div
                 key={index}
                 className={`op-object ${
@@ -108,7 +58,8 @@ export const OportunitiesHome = () => {
                   </button>
                 )}
               </div>
-            ))
+            )
+          )
         )}
       </div>
       <div className="see-more">

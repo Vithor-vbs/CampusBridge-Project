@@ -38,9 +38,9 @@ const getOpportunity = async (id) => {
   }
 };
 
-const getOpportunities = async () => {
+const getOpportunities = async (limit, offset) => {
   try {
-    const opportunities = await Opportunity.find();
+    const opportunities = await Opportunity.find().skip(offset).limit(limit);
     return opportunities;
   } catch (error) {
     throw error;
