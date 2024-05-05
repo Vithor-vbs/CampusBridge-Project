@@ -2,25 +2,20 @@ import "./OpportunitiesContent.css";
 import sampleImage from "../../assets/image-example.png";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaCalendar } from "react-icons/fa";
-import { useQuery } from "@apollo/client";
-import { GET_FILTERED_OPORTUNITIES } from "../../GraphQL/Queries";
 import { Opportunity } from "../types";
 import { useState } from "react";
 
 interface OpportunitiesContentProps {
   page: number;
+  allResults: any;
+  filteredResults: any;
 }
 
-export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
-  const PAGE_SIZE = 8;
-
-  const { loading, error, data } = useQuery(GET_FILTERED_OPORTUNITIES, {
-    variables: { limit: PAGE_SIZE, offset: page * PAGE_SIZE },
-  });
-  if (error) {
-    throw new Error(`Error! ${error.message}`);
-  }
-
+export const OpportunitiesContent = ({
+  page,
+  allResults,
+  filteredResults,
+}: OpportunitiesContentProps) => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
 
   const handleFilterClick = (area: string) => {
@@ -29,10 +24,10 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
 
   let uniqueAreas: string[] = [];
 
-  if (!loading && data) {
+  if (!allResults.loading && allResults.data) {
     uniqueAreas = Array.from(
       new Set(
-        data.getFilteredOpportunities.opportunities.map(
+        allResults.data.getAllOpportunities.opportunities.map(
           (opportunity: Opportunity) => opportunity.area
         )
       )
@@ -42,8 +37,8 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
   return (
     <section className="op-content-section">
       <div className="op-content-box">
-        {!loading &&
-          data.getFilteredOpportunities.opportunities
+        {!filteredResults.loading &&
+          filteredResults.data.getFilteredOpportunities.opportunities
             .filter(
               (opportunity: Opportunity) =>
                 !selectedArea || opportunity.area === selectedArea
@@ -60,7 +55,7 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
                     href="/oportunidades"
                     className="properties-name op-adjust"
                   >
-                    <span>mostrar mais</span>{" "}
+                    <span>mostrar mais</span>
                     <BsArrowRightShort size="1.5rem" />
                   </a>
                   <p>
@@ -93,7 +88,7 @@ export const OpportunitiesContent = ({ page }: OpportunitiesContentProps) => {
                   <span>{area}</span>
                   <p>
                     {
-                      data.getFilteredOpportunities.opportunities.filter(
+                      allResults.data.getAllOpportunities.opportunities.filter(
                         (opportunity: Opportunity) => opportunity.area === area
                       ).length
                     }

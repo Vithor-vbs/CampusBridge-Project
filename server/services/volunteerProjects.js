@@ -41,7 +41,7 @@ const getOpportunity = async (id) => {
 const getFilteredOpportunities = async (limit, offset) => {
   try {
     const opportunities = await Opportunity.find().skip(offset).limit(limit);
-    const totalCount = await Opportunity.countDocuments();
+    const totalCount = opportunities.length;
     return { opportunities, totalCount };
   } catch (error) {
     throw error;

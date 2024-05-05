@@ -33,3 +33,23 @@ export const LOGOUT = gql`
     }
   }
 `;
+
+export const ADD_FEEDBACK = gql`
+  mutation CreateContact(
+    $name: String!
+    $email: String!
+    $title: String!
+    $message: String!
+  ) {
+    createContact(
+      name: $name
+      email: $email
+      title: $title
+      message: $message
+    ) {
+      name
+      title
+      message
+    }
+  }
+`;

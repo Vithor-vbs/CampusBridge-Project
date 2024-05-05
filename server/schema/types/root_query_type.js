@@ -9,6 +9,8 @@ const {
 const UserType = require("./user_type");
 const OpportunityType = require("./opportunity_type");
 const OpportunityService = require("../../services/volunteerProjects");
+const ContactService = require("../../services/contactService");
+const ContactType = require("./contact_type");
 
 const OpportunitiesResultType = new GraphQLObjectType({
   name: "OpportunitiesResult",
@@ -53,6 +55,13 @@ const RootQueryType = new GraphQLObjectType({
       args: { id: { type: new GraphQLNonNull(GraphQLString) } },
       resolve(parentValue, { id }) {
         return OpportunityService.getOpportunity(id);
+      },
+    },
+
+    getAllFeedbacks: {
+      type: new GraphQLList(ContactType),
+      resolve(parentValue) {
+        return ContactService.getAllFeedbacks();
       },
     },
   },

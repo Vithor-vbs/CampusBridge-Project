@@ -5,12 +5,22 @@ import { IoIosArrowForward } from "react-icons/io";
 interface OpportunitiesContentProps {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   page: number;
+  allResultsCount: number;
+  offset: number;
+  paginationAux: number;
 }
 
 export const OpportunitiesPagination = ({
   setPage,
   page,
+  allResultsCount,
+  paginationAux,
+  offset,
 }: OpportunitiesContentProps) => {
+  if (paginationAux > allResultsCount) {
+    paginationAux = allResultsCount;
+  }
+
   return (
     <section className={styles["pagination-container"]}>
       <div className={styles["pagination-flex"]}>
@@ -26,12 +36,15 @@ export const OpportunitiesPagination = ({
           <button
             onClick={() => setPage((prev) => prev + 1)}
             className={styles["pagination-button"]}
+            disabled={paginationAux >= allResultsCount}
           >
             <IoIosArrowForward size="1.8rem" />
           </button>
         </div>
         <div className={styles["pagination-right"]}>
-          <p>1-10 de 100 resultados</p>
+          <p>
+            {offset}-{paginationAux} de {allResultsCount} resultados
+          </p>
         </div>
       </div>
     </section>

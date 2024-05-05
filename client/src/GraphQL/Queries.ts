@@ -29,15 +29,18 @@ export const GET_FILTERED_OPORTUNITIES = gql`
 `;
 
 export const GET_OPORTUNITIES = gql`
-  query getOpportunities {
-    getOpportunities {
-      id
-      company
-      duration
-      jobTitle
-      description
-      area
-      tags
+  query getAllOpportunities {
+    getAllOpportunities {
+      opportunities {
+        id
+        company
+        duration
+        jobTitle
+        description
+        area
+        tags
+      }
+      totalCount
     }
   }
 `;
