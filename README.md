@@ -26,6 +26,15 @@ Check out our figma [mock](https://www.figma.com/file/wnPXwJGfeM5MFHHah3qQUu/Cam
 - University students who want to engage in volunteering activities and contribute to significant causes during their academic journey.
 - Higher education institutions that aim to promote civic engagement among their students and increase the social impact of their academic community.
 
+## Technologies:
+
+- TypeScript: Utilized for building scalable and maintainable web applications, providing strong typing and modern JavaScript features.
+- Node.js: Employs a runtime environment for executing JavaScript code server-side, facilitating the development of backend services.
+- React: Employed for creating interactive and dynamic user interfaces, enhancing the user experience of the application.
+- MongoDB: Utilized as a NoSQL database to store flexible and scalable data structures, accommodating the diverse needs of the platform.
+- GraphQL: Utilized as a query language for APIs, enabling efficient data fetching and empowering clients to request only the data they need.
+
+
 ## Table:
 
 | ID | Requirement                              | Requirement Type | Details                                                                                                            |
