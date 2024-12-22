@@ -64,6 +64,13 @@ export const OpportunitiesContent = ({
                 </div>
               </div>
             ))}
+        {allResults?.data?.getAllOpportunities.totalCount === 0 && (
+          <div>
+            <h2 style={{ fontSize: "2rem" }}>
+              Nenhuma oportunidade encontrada
+            </h2>
+          </div>
+        )}
       </div>
       <div className={"form-group"}>
         <input

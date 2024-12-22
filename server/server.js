@@ -13,8 +13,7 @@ const cors = require("cors");
 const app = express();
 
 // Replace with your Mongo Atlas URI
-const MONGO_URI =
-  "mongodb+srv://vithor:7PjOjvA6kXtIGN1N@cluster0.lflq4ej.mongodb.net/auth";
+const MONGO_URI = "mongodb://root:pw@localhost:27017/auth?authSource=admin";
 if (!MONGO_URI) {
   throw new Error("You must provide a Mongo Atlas URI");
 }
@@ -55,6 +54,22 @@ app.use(
 // assign the current user to the 'req.user' object.  See also servces/auth.js
 app.use(passport.initialize());
 app.use(passport.session());
+
+// // dealing with cors headers
+// const allowedOrigins = ["http://localhost:5000", "http://127.0.0.1:5000"];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
 
 // Instruct Express to pass on any request made to the '/graphql' route
 // to the GraphQL instance.

@@ -11,17 +11,18 @@ import {
 } from "../../GraphQL/Queries";
 
 export const Opportunities = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  console.log("page ", page);
 
   const PAGE_SIZE = 8;
   const offset = page * PAGE_SIZE;
   const paginationAux = PAGE_SIZE * (page + 1);
 
   const allResults = useQuery(GET_OPORTUNITIES);
-  console.log("allresults ", allResults);
+  console.log("allresults ", allResults?.data);
 
   const allResultsCount: number =
-    allResults.data.getAllOpportunities.totalCount;
+    allResults?.data?.getAllOpportunities.totalCount;
   const filteredResults = useQuery(GET_FILTERED_OPORTUNITIES, {
     variables: { limit: PAGE_SIZE, offset: offset },
   });

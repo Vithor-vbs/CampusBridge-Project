@@ -13,7 +13,7 @@ import { GET_USER } from "./GraphQL/Queries";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
-export default function transition() {
+export default function Transition() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,12 +38,17 @@ export default function transition() {
 
   useEffect(() => {
     if (!loading) {
-      console.log("data", data);
+      // Check if user is logged in or not
       if (!data?.getUser || error) {
-        navigate("/login");
+        if (
+          location.pathname !== "/registro" &&
+          location.pathname !== "/login"
+        ) {
+          navigate("/login");
+        }
       }
     }
-  }, [loading, data, error]);
+  }, [loading, data, error, location.pathname, navigate]);
 
   return (
     <AnimatePresence mode="wait">
