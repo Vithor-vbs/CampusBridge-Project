@@ -43,13 +43,32 @@ sleep 5
 
 # Install server dependencies
 echo "📚 Installing server dependencies..."
-npm ci
+if ! npm ci 2>/dev/null; then
+    echo "⚠️  Lock file out of sync. Regenerating dependencies..."
+    rm -f package-lock.json
+    npm install
+fi
 
 # Install client dependencies
 echo "📚 Installing client dependencies..."
 cd client
-npm ci
+if ! npm ci 2>/dev/null; then
+    echo "⚠️  Client lock file out of sync. Regenerating dependencies..."
+    rm -f package-lock.json
+    npm install
+fi
 cd ..
+
+# Clean up any existing processes on required ports
+echo "🧹 Cleaning up any existing processes on ports 4000 and 5000..."
+if lsof -ti:4000 &> /dev/null; then
+    echo "   Stopping process on port 4000..."
+    lsof -ti:4000 | xargs kill -9 2>/dev/null || true
+fi
+if lsof -ti:5000 &> /dev/null; then
+    echo "   Stopping process on port 5000..."
+    lsof -ti:5000 | xargs kill -9 2>/dev/null || true
+fi
 
 echo ""
 echo "✅ Setup completed successfully!"

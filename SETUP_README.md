@@ -202,12 +202,18 @@ This project uses **exact version locking** to prevent dependency conflicts:
 
 ### Common Issues
 
-1. **"req.logIn is not a function" Error**
+1. **"npm ci" Lock File Sync Error**
+
+   - **Issue**: `package-lock.json` and `package.json` are out of sync
+   - **Solution**: The setup script now automatically handles this by regenerating lock files
+   - **Manual fix**: Delete lock files and run `npm install` instead of `npm ci`
+
+2. **"req.logIn is not a function" Error**
 
    - ✅ **Fixed**: This was caused by incorrect GraphQL context configuration
    - The server now properly passes the Express request object to GraphQL resolvers
 
-2. **GraphQL Version Conflicts**
+3. **GraphQL Version Conflicts**
 
    - ✅ **Fixed**: Server and client now use matching GraphQL v15.8.0
    - If you see conflicts, ensure you're using `npm ci` not `npm install`
@@ -220,21 +226,32 @@ This project uses **exact version locking** to prevent dependency conflicts:
 
 4. **Port Already in Use**
 
-   - Server (4000): `lsof -ti:4000 | xargs kill -9` or `fuser -k 4000/tcp`
-   - Client (5000): `lsof -ti:5000 | xargs kill -9` or `fuser -k 5000/tcp`
+   - **Issue**: `Error: listen EADDRINUSE: address already in use :::4000`
+   - **Solution**: The setup script now automatically cleans up ports 4000 and 5000
+   - **Manual fix**: 
+     - Server (4000): `lsof -ti:4000 | xargs kill -9`
+     - Client (5000): `lsof -ti:5000 | xargs kill -9`
 
 5. **Node Version Issues**
 
    - Use the version specified in `.nvmrc`: `nvm use`
    - Minimum required: Node.js 16+
 
-6. **Clean Installation**
+6. **Security Vulnerabilities**
+
+   - If you see npm audit warnings, you can fix them with:
+   ```bash
+   npm audit fix
+   cd client && npm audit fix && cd ..
+   ```
+
+7. **Clean Installation**
    ```bash
    # Remove all dependencies and reinstall with exact versions
    rm -rf node_modules package-lock.json
    rm -rf client/node_modules client/package-lock.json
-   npm ci
-   cd client && npm ci && cd ..
+   npm install  # Use install instead of ci for fresh setup
+   cd client && npm install && cd ..
    ```
 
 ### Quick Health Check
