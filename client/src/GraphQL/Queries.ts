@@ -3,10 +3,37 @@ import { gql } from "@apollo/client";
 export const GET_USER = gql`
   query {
     getUser {
-      id
+      _id
       email
-      firstName
-      lastName
+      name
+      profileImage
+      bio
+      university
+      course
+      competences
+      enrolledOpportunities {
+        id
+        company
+        jobTitle
+        duration
+        area
+        tags
+        description
+        image
+      }
+      completedOpportunities {
+        id
+        company
+        jobTitle
+        duration
+        area
+        tags
+        description
+        image
+      }
+      volunteerHours
+      projectsCompleted
+      donationsMade
     }
   }
 `;
@@ -41,6 +68,21 @@ export const GET_OPORTUNITIES = gql`
         tags
       }
       totalCount
+    }
+  }
+`;
+
+export const GET_OPPORTUNITY = gql`
+  query getOpportunity($id: String!) {
+    getOpportunity(id: $id) {
+      id
+      company
+      duration
+      jobTitle
+      description
+      area
+      tags
+      image
     }
   }
 `;

@@ -26,7 +26,7 @@ export function Footer() {
       </div>
       <div className={styles.grid}>
         <div className={styles.blanc}></div>
-        <a>Oportunidades</a>
+        <a href="/oportunidades">Oportunidades</a>
         <a href="https://www.unifor.br/">Acesse a Unifor</a>
       </div>
       <div className={styles.grid}>
@@ -34,8 +34,12 @@ export function Footer() {
         <a href="/#aboutUs">Sobre</a>
       </div>
       <div className={styles.grid}>
+        <div className={styles.blanc}></div>
+        <a href="/Perfil">Perfil</a>
+      </div>
+      <div className={styles.grid}>
         <div></div>
-        <a>Contato</a>
+        <a href="/contato">Contato</a>
       </div>
       <p className={styles["allrights"]}>
         2023 CampusBridge. All rights reverved

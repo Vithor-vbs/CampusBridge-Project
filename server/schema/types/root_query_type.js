@@ -26,6 +26,15 @@ const RootQueryType = new GraphQLObjectType({
     getUser: {
       type: UserType,
       resolve(parentValue, args, req) {
+        if (!req.user) return null;
+
+        // If user has mongoose methods, populate the opportunities
+        if (req.user.populate) {
+          return req.user.populate(
+            "enrolledOpportunities completedOpportunities"
+          );
+        }
+
         return req.user;
       },
     },

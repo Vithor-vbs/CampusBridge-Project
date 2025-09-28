@@ -78,3 +78,58 @@
 .pageIndex-modified:after {
   width: 100%;
 }
+
+.heeader-profile-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Profile Icon Styles */
+.profile-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid #e6e6e6;
+}
+
+.profile-icon-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 173, 181, 0.3);
+  border-color: #00adb5;
+}
+
+.profile-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-icon-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+/* Header separator line */
+.header-separator {
+  width: 1px;
+  height: 24px;
+  background-color: #d0d0d0;
+  margin: 0 1rem;
+}

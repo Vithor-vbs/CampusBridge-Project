@@ -7,6 +7,7 @@ import {
   ContactUsPage,
   OpportunitiesPage,
   Vacancy,
+  ProfilePage,
 } from "./components/index";
 import { useQuery } from "@apollo/client";
 import { GET_USER } from "./GraphQL/Queries";
@@ -58,7 +59,8 @@ export default function Transition() {
         <Route path="/registro" element={<RegisterPage />} />
         <Route path="/Contato" element={<ContactUsPage />} />
         <Route path="/Oportunidades" element={<OpportunitiesPage />} />
-        <Route path="/Oportunidades/teste" element={<Vacancy />} />
+        <Route path="/Oportunidades/:id" element={<Vacancy />} />
+        <Route path="/Perfil" element={<ProfilePage />} />
       </Routes>
     </AnimatePresence>
   );

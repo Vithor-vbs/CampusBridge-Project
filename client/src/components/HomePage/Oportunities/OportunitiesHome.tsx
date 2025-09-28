@@ -41,6 +41,10 @@ export const OportunitiesHome = () => {
                 }`}
                 onMouseEnter={() => handleMouseEnter(opportunity.id)}
                 onMouseLeave={handleMouseLeave}
+                onClick={() =>
+                  (window.location.href = `/Oportunidades/${opportunity.id}`)
+                }
+                style={{ cursor: "pointer" }}
               >
                 <div className="grey-mask">
                   <img src={genericImage} alt="" className="op-image" />
@@ -53,7 +57,11 @@ export const OportunitiesHome = () => {
                   </div>
                 </div>
                 {opportunity.id === hoveredKey && (
-                  <button onClick={() => console.log("Button Clicked")}>
+                  <button
+                    onClick={() =>
+                      (window.location.href = `/Oportunidades/${opportunity.id}`)
+                    }
+                  >
                     Leia mais
                   </button>
                 )}
@@ -63,7 +71,7 @@ export const OportunitiesHome = () => {
         )}
       </div>
       <div className="see-more">
-        <a href="/oportunidades" className="properties-name op-adjust">
+        <a href="/Oportunidades" className="properties-name op-adjust">
           <span>mostrar mais</span> <BsArrowRightShort size="1.5rem" />
         </a>
       </div>

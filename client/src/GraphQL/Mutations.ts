@@ -4,14 +4,14 @@ export const SIGN_UP = gql`
   mutation signup(
     $email: String!
     $password: String!
-    $firstname: String
-    $lastname: String
+    $firstName: String
+    $lastName: String
   ) {
     signup(
       email: $email
       password: $password
-      firstName: $firstname
-      lastName: $lastname
+      firstName: $firstName
+      lastName: $lastName
     ) {
       email
     }
@@ -50,6 +50,91 @@ export const ADD_FEEDBACK = gql`
       name
       title
       message
+    }
+  }
+`;
+
+export const UPDATE_PROFILE = gql`
+  mutation UpdateProfile(
+    $name: String
+    $profileImage: String
+    $bio: String
+    $university: String
+    $course: String
+    $competences: [String]
+  ) {
+    updateProfile(
+      name: $name
+      profileImage: $profileImage
+      bio: $bio
+      university: $university
+      course: $course
+      competences: $competences
+    ) {
+      _id
+      name
+      email
+      profileImage
+      bio
+      university
+      course
+      competences
+      enrolledOpportunities {
+        id
+        company
+        jobTitle
+        duration
+        area
+        tags
+      }
+      completedOpportunities {
+        id
+        company
+        jobTitle
+        duration
+        area
+        tags
+      }
+      volunteerHours
+      projectsCompleted
+      donationsMade
+    }
+  }
+`;
+
+export const ENROLL_IN_OPPORTUNITY = gql`
+  mutation EnrollInOpportunity($opportunityId: String!) {
+    enrollInOpportunity(opportunityId: $opportunityId) {
+      _id
+      enrolledOpportunities {
+        id
+        company
+        jobTitle
+        duration
+        area
+        tags
+      }
+    }
+  }
+`;
+
+export const COMPLETE_OPPORTUNITY = gql`
+  mutation CompleteOpportunity($opportunityId: String!, $hoursWorked: Int) {
+    completeOpportunity(
+      opportunityId: $opportunityId
+      hoursWorked: $hoursWorked
+    ) {
+      _id
+      completedOpportunities {
+        id
+        company
+        jobTitle
+        duration
+        area
+        tags
+      }
+      volunteerHours
+      projectsCompleted
     }
   }
 `;

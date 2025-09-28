@@ -31,7 +31,7 @@ export const TitleSection = (props: UserDataProps) => {
             <span className="title-sec-line">começa aqui</span>
           </div>
           <DescriptionSection />
-          <ButtonCTA linkTo="/oportunidades" text="Veja as Oportunidades" />
+          <ButtonCTA linkTo="/Oportunidades" text="Veja as Oportunidades" />
         </div>
         <img
           src={connectedWorld}

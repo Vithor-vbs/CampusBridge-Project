@@ -36,7 +36,6 @@ export const Opportunities = () => {
       <OpportunitiesContent
         allResults={allResults}
         filteredResults={filteredResults}
-        page={page}
       />
       <OpportunitiesPagination
         allResultsCount={allResultsCount}

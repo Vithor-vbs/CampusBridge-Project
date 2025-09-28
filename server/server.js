@@ -49,6 +49,10 @@ app.use(
   })
 );
 
+// Add body parser with increased limit for images
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
+
 // Passport is wired into express as a middleware. When a request comes in,
 // Passport will examine the request's session (as set by the above config) and
 // assign the current user to the 'req.user' object.  See also servces/auth.js

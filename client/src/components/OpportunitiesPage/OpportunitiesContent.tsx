@@ -4,15 +4,14 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { FaCalendar } from "react-icons/fa";
 import { Opportunity } from "../types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface OpportunitiesContentProps {
-  page: number;
   allResults: any;
   filteredResults: any;
 }
 
 export const OpportunitiesContent = ({
-  page,
   allResults,
   filteredResults,
 }: OpportunitiesContentProps) => {
@@ -51,13 +50,13 @@ export const OpportunitiesContent = ({
                   {opportunity.description}
                 </p>
                 <div className="op-content-bottom">
-                  <a
-                    href="/oportunidades"
+                  <Link
+                    to={`/Oportunidades/${opportunity.id}`}
                     className="properties-name op-adjust"
                   >
                     <span>mostrar mais</span>
                     <BsArrowRightShort size="1.5rem" />
-                  </a>
+                  </Link>
                   <p>
                     <FaCalendar /> <span>{opportunity.duration}</span>
                   </p>

@@ -10,6 +10,16 @@ const UserSchema = new Schema({
   password: String,
   firstName: String,
   lastName: String,
+  profileImage: String,
+  bio: String,
+  university: String,
+  course: String,
+  competences: [String], // Array of user's skills/competences
+  enrolledOpportunities: [{ type: Schema.Types.ObjectId, ref: "opportunity" }], // Opportunities user applied to
+  completedOpportunities: [{ type: Schema.Types.ObjectId, ref: "opportunity" }], // Completed opportunities
+  volunteerHours: { type: Number, default: 0 },
+  projectsCompleted: { type: Number, default: 0 },
+  donationsMade: { type: Number, default: 0 },
 });
 
 // The user's password is never saved in plain text.  Prior to saving the
