@@ -208,44 +208,51 @@ This project uses **exact version locking** to prevent dependency conflicts:
    - **Solution**: The setup script now automatically handles this by regenerating lock files
    - **Manual fix**: Delete lock files and run `npm install` instead of `npm ci`
 
-2. **"req.logIn is not a function" Error**
+2. **"req#logout requires a callback function" Error**
+
+   - ✅ **Fixed**: This was caused by using older Passport.js logout syntax
+   - The logout mutation now uses the Promise-based approach required by Passport.js v0.6.0+
+   - Updated `req.logout()` to `req.logout((err) => {...})` with proper error handling
+
+3. **"req.logIn is not a function" Error**
 
    - ✅ **Fixed**: This was caused by incorrect GraphQL context configuration
    - The server now properly passes the Express request object to GraphQL resolvers
 
-3. **GraphQL Version Conflicts**
+4. **GraphQL Version Conflicts**
 
    - ✅ **Fixed**: Server and client now use matching GraphQL v15.8.0
    - If you see conflicts, ensure you're using `npm ci` not `npm install`
 
-3. **MongoDB Connection Issues**
+5. **MongoDB Connection Issues**
 
    - Ensure Docker is running: `docker ps`
    - Check container status: `docker-compose logs mongo`
    - Restart if needed: `docker-compose restart mongo`
 
-4. **Port Already in Use**
+6. **Port Already in Use**
 
    - **Issue**: `Error: listen EADDRINUSE: address already in use :::4000`
    - **Solution**: The setup script now automatically cleans up ports 4000 and 5000
-   - **Manual fix**: 
+   - **Manual fix**:
      - Server (4000): `lsof -ti:4000 | xargs kill -9`
      - Client (5000): `lsof -ti:5000 | xargs kill -9`
 
-5. **Node Version Issues**
+7. **Node Version Issues**
 
    - Use the version specified in `.nvmrc`: `nvm use`
    - Minimum required: Node.js 16+
 
-6. **Security Vulnerabilities**
+8. **Security Vulnerabilities**
 
    - If you see npm audit warnings, you can fix them with:
+
    ```bash
    npm audit fix
    cd client && npm audit fix && cd ..
    ```
 
-7. **Clean Installation**
+9. **Clean Installation**
    ```bash
    # Remove all dependencies and reinstall with exact versions
    rm -rf node_modules package-lock.json

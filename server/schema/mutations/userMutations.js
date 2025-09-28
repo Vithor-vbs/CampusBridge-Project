@@ -31,8 +31,15 @@ const UserMutations = {
     type: UserType,
     resolve(parentValue, args, req) {
       const { user } = req;
-      req.logout();
-      return user;
+      return new Promise((resolve, reject) => {
+        req.logout((err) => {
+          if (err) {
+            reject(new Error("Logout failed"));
+          } else {
+            resolve(user);
+          }
+        });
+      });
     },
   },
 
