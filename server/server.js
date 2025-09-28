@@ -1,11 +1,11 @@
 const express = require("express");
 const models = require("./models/index.js");
-const expressGraphQL = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportConfig = require("./services/auth.js");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 const schema = require("./schema/schema.js");
 const cors = require("cors");
 
@@ -43,8 +43,7 @@ app.use(
     saveUninitialized: true,
     secret: "aaabbbccc",
     store: new MongoStore({
-      url: MONGO_URI,
-      autoReconnect: true,
+      mongoUrl: MONGO_URI,
     }),
   })
 );
@@ -80,12 +79,14 @@ app.use(passport.session());
 
 app.use(cors({ origin: "http://localhost:5000", credentials: true }));
 
+// GraphQL endpoint
 app.use(
   "/graphql",
-  expressGraphQL({
+  graphqlHTTP((req, res) => ({
     schema,
     graphiql: true,
-  })
+    context: req, // Pass the request object directly as context
+  }))
 );
 
 const path = require("path");

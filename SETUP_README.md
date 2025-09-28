@@ -20,70 +20,74 @@ Make sure you have the following installed on your system:
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository
+### Option A: Automated Setup (Recommended)
+
+```bash
+git clone <repository-url>
+cd CampusBridge-Project
+./setup.sh
+```
+
+The setup script will:
+
+- ✅ Verify system requirements
+- 🐳 Start MongoDB database
+- 📦 Install all dependencies with exact versions
+- 🔧 Validate the installation
+
+### Option B: Manual Setup
+
+#### 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
 cd CampusBridge-Project
 ```
 
-### 2. Start the Database
+#### 2. Verify Prerequisites
 
-First, start the MongoDB database using Docker Compose:
+- **Node.js**: v16+ (recommended: use the version in `.nvmrc`)
+- **Docker**: For MongoDB database
+- **npm**: v8+ (comes with Node.js)
+
+```bash
+# If using nvm (recommended)
+nvm use
+
+# Check versions
+node --version  # Should be 16+
+docker --version
+```
+
+#### 3. Start the Database
 
 ```bash
 docker-compose up -d
 ```
 
-This will start a MongoDB container with:
-
-- Port: `27017`
-- Username: `root`
-- Password: `pw`
-- Database: `auth`
-
-### 3. Install Server Dependencies
+#### 4. Install Dependencies
 
 ```bash
-npm install --legacy-peer-deps
-```
+# Install server dependencies (exact versions)
+npm ci
 
-> **Note**: We use `--legacy-peer-deps` because the project uses older versions of GraphQL that have peer dependency conflicts with newer Apollo Client versions.
-
-### 4. Install Client Dependencies
-
-```bash
+# Install client dependencies (exact versions)
 cd client
-npm install
+npm ci
 cd ..
 ```
 
-### 5. Start the Development Servers
+> **Important**: Use `npm ci` instead of `npm install` to ensure exact version matching and prevent dependency conflicts.
 
-#### Option A: Start Both Servers Simultaneously (Recommended)
+#### 5. Start the Development Servers
 
-**Terminal 1 - Start the GraphQL Server:**
-
-```bash
-npm run dev
-```
-
-**Terminal 2 - Start the Client:**
-
-```bash
-cd client
-npm run dev
-```
-
-#### Option B: Use the npm scripts individually
-
-**Server (GraphQL API):**
+**Terminal 1 - GraphQL Server:**
 
 ```bash
 npm run dev
 ```
 
-**Client (React App):**
+**Terminal 2 - React Client:**
 
 ```bash
 cd client
@@ -148,13 +152,42 @@ The application uses:
 - **Express sessions** stored in MongoDB
 - **bcrypt** for password hashing
 
-## 🛠️ Development Workflow
+## � Dependency Management
+
+This project uses **exact version locking** to prevent dependency conflicts:
+
+- **Server**: All dependencies use exact versions (no `^` or `~`)
+- **Client**: All dependencies use exact versions (no `^` or `~`)
+- **Node.js**: Specified in `.nvmrc` and `package.json` engines field
+- **Install**: Always use `npm ci` instead of `npm install`
+
+### Why Exact Versions?
+
+- ✅ **Consistency**: All developers get identical dependency versions
+- ✅ **Stability**: Prevents breaking changes from minor updates
+- ✅ **Compatibility**: Ensures GraphQL versions match between client/server
+- ✅ **Reproducibility**: Builds are identical across environments
+
+## �🛠️ Development Workflow
 
 ### Making Changes
 
 1. **Frontend Changes**: The Vite development server will automatically reload when you make changes to files in the `client/` directory.
 
 2. **Backend Changes**: The server uses `nodemon` which automatically restarts when you make changes to server files.
+
+3. **Dependency Updates**:
+
+   ```bash
+   # Check outdated packages
+   npm outdated
+
+   # Update specific package (test thoroughly!)
+   npm install package-name@latest
+
+   # Update package.json to use exact version
+   # Remove ^ or ~ from version number
+   ```
 
 ### Database Management
 
@@ -169,26 +202,51 @@ The application uses:
 
 ### Common Issues
 
-1. **Dependency Conflicts**
+1. **"req.logIn is not a function" Error**
 
-   - If you encounter GraphQL version conflicts, use: `npm install --legacy-peer-deps`
+   - ✅ **Fixed**: This was caused by incorrect GraphQL context configuration
+   - The server now properly passes the Express request object to GraphQL resolvers
 
-2. **MongoDB Connection Issues**
+2. **GraphQL Version Conflicts**
+
+   - ✅ **Fixed**: Server and client now use matching GraphQL v15.8.0
+   - If you see conflicts, ensure you're using `npm ci` not `npm install`
+
+3. **MongoDB Connection Issues**
 
    - Ensure Docker is running: `docker ps`
-   - Check if the container is healthy: `docker-compose logs mongo`
+   - Check container status: `docker-compose logs mongo`
+   - Restart if needed: `docker-compose restart mongo`
 
-3. **Port Already in Use**
+4. **Port Already in Use**
 
-   - Server (4000): `lsof -ti:4000 | xargs kill -9`
-   - Client (5000): `lsof -ti:5000 | xargs kill -9`
+   - Server (4000): `lsof -ti:4000 | xargs kill -9` or `fuser -k 4000/tcp`
+   - Client (5000): `lsof -ti:5000 | xargs kill -9` or `fuser -k 5000/tcp`
 
-4. **Node Modules Issues**
-   - Clear and reinstall:
-     ```bash
-     rm -rf node_modules package-lock.json
-     npm install --legacy-peer-deps
-     ```
+5. **Node Version Issues**
+
+   - Use the version specified in `.nvmrc`: `nvm use`
+   - Minimum required: Node.js 16+
+
+6. **Clean Installation**
+   ```bash
+   # Remove all dependencies and reinstall with exact versions
+   rm -rf node_modules package-lock.json
+   rm -rf client/node_modules client/package-lock.json
+   npm ci
+   cd client && npm ci && cd ..
+   ```
+
+### Quick Health Check
+
+```bash
+# Check if everything is running correctly
+curl http://localhost:4000/graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query":"query { __typename }"}'
+
+# Should return: {"data":{"__typename":"RootQueryType"}}
+```
 
 ### Build for Production
 
