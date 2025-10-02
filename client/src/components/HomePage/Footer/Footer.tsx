@@ -1,4 +1,4 @@
-import campusBridgeWhiteLogo from "../../../assets/CampusBridge-vectorized.svg";
+import uniShareLogo from "../../../assets/unishare-logo-footer.svg";
 import styles from "./Footer.module.css";
 
 export function Footer() {
@@ -9,8 +9,8 @@ export function Footer() {
           <a href="/">
             <img
               className={styles["header-main-image"]}
-              src={campusBridgeWhiteLogo}
-              alt="CampusBridge agency name"
+              src={uniShareLogo}
+              alt="UniShare agency name"
             />
           </a>
         </div>
@@ -42,7 +42,7 @@ export function Footer() {
         <a href="/contato">Contato</a>
       </div>
       <p className={styles["allrights"]}>
-        2023 CampusBridge. All rights reverved
+        2025 UniShare. All rights reverved
       </p>
     </section>
   );

@@ -8,7 +8,7 @@ export const AboutUs = () => {
         <h2>Sobre nós</h2>
         <div className="aboutUs-text-box">
           <p style={{ marginBottom: "2rem" }}>
-            O CampusBridge é uma associação vinculada à Universidade de
+            O UniShare é uma associação vinculada à Universidade de
             Fortaleza (UNIFOR). Nossa jornada começa com um
             <span className="blue-lighter"> compromisso profundo </span>
             com a promoção do engajamento cívico e do voluntariado entre os

@@ -49,6 +49,7 @@ export const GET_FILTERED_OPORTUNITIES = gql`
         description
         area
         tags
+        image
       }
       totalCount
     }
@@ -66,6 +67,7 @@ export const GET_OPORTUNITIES = gql`
         description
         area
         tags
+        image
       }
       totalCount
     }

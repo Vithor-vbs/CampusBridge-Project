@@ -6,6 +6,7 @@ export interface Opportunity {
   description: string;
   area: string;
   tags: string[];
+  image?: string;
 }
 
 export interface User {

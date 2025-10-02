@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import campusBridgeWhiteLogo from "../../assets/CampusBridge-vectorized.svg";
+import uniShare from "../../assets/unishare-logo-header.svg";
 import "./Header.css";
 import { useMutation, useQuery } from "@apollo/client";
 import { LOGOUT } from "../../GraphQL/Mutations";
@@ -51,7 +51,7 @@ export function Header(props: HeaderSectionProps) {
         <a className="home-redirect" href="/">
           <img
             className="header-main-image"
-            src={campusBridgeWhiteLogo}
+            src={uniShare}
             alt="CampusBridge agency name"
           />
         </a>

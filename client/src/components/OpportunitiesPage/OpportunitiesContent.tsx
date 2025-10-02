@@ -45,7 +45,7 @@ export const OpportunitiesContent = ({
             .map((opportunity: Opportunity) => (
               <div className="op-item-box" key={opportunity.id}>
                 <h2>{opportunity.jobTitle}</h2>
-                <img src={sampleImage} alt="" />
+                <img src={opportunity.image || sampleImage} alt="" />
                 <p className="op-content-description">
                   {opportunity.description}
                 </p>
