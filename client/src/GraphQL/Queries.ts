@@ -50,6 +50,7 @@ export const GET_FILTERED_OPORTUNITIES = gql`
         area
         tags
         image
+        type
       }
       totalCount
     }
@@ -68,6 +69,7 @@ export const GET_OPORTUNITIES = gql`
         area
         tags
         image
+        type
       }
       totalCount
     }
@@ -85,6 +87,8 @@ export const GET_OPPORTUNITY = gql`
       area
       tags
       image
+      type
+      amount
     }
   }
 `;

@@ -47,7 +47,7 @@ export const OportunitiesHome = () => {
                 style={{ cursor: "pointer" }}
               >
                 <div className="grey-mask">
-                  <img src={genericImage} alt="" className="op-image" />
+                  <img src={opportunity.image || genericImage} alt="" className="op-image" />
                   <div className="info">
                     <h3>{opportunity.company}</h3>
                     <p>{opportunity.jobTitle}</p>

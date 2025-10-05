@@ -10,18 +10,28 @@ const createOpportunity = async ({
   tags,
   description,
   image,
+  type,
+  amount
 }) => {
-  const newOpportunity = new Opportunity({
-    company,
-    duration,
-    area,
-    tags,
-    jobTitle,
-    description,
-    image,
-  });
-
   try {
+    const existingOpportunity = await Opportunity.findOne({ jobTitle: jobTitle.trim() });
+
+    const newOpportunity = new Opportunity({
+      company,
+      duration,
+      area,
+      tags,
+      jobTitle,
+      description,
+      image,
+      type,
+      amount
+    });
+
+    if (existingOpportunity) {
+      throw new Error(`An opportunity with the title "${jobTitle}" already exists.`);
+    }
+
     const savedOpportunity = await newOpportunity.save();
     return savedOpportunity;
   } catch (error) {
@@ -51,6 +61,7 @@ const getFilteredOpportunities = async (limit, offset) => {
 const getAllOpportunities = async () => {
   try {
     const opportunities = await Opportunity.find();
+
     const totalCount = await Opportunity.countDocuments();
     return { opportunities, totalCount };
   } catch (error) {

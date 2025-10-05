@@ -138,3 +138,34 @@ export const COMPLETE_OPPORTUNITY = gql`
     }
   }
 `;
+
+export const CREATE_DONATION_MUTATION = gql`
+  mutation CreateOpportunity(
+    $jobTitle: String!
+    $company: String!
+    $description: String!
+    $area: String!
+    $duration: String!
+    $tags: [String]
+    $image: String
+    $amount: Int!
+    $type: String!
+  ) {
+    createOpportunity(
+      jobTitle: $jobTitle
+      company: $company
+      description: $description
+      area: $area
+      duration: $duration
+      tags: $tags
+      image: $image
+      amount: $amount
+      type: $type
+    ) {
+      id
+      jobTitle
+      area
+      type
+    }
+  }
+`

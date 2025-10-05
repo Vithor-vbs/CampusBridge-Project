@@ -29,6 +29,16 @@ const OpportunitySchema = new mongoose.Schema({
     type: Array,
     required: false,
   },
+  type: {
+    type: String,
+    enum: ["volunteering", "donation"],
+    required: true,
+    default: "volunteering",
+  }, 
+  amount: {
+    type: Number,
+    default: 1,
+  },
 });
 
 const Opportunity = mongoose.model("opportunity", OpportunitySchema);

@@ -12,6 +12,8 @@ const OpportunityType = new GraphQLObjectType({
     area: { type: GraphQLString },
     tags: { type: new graphql.GraphQLList(GraphQLString) },
     image: { type: GraphQLString },
+    type: { type: new GraphQLNonNull(GraphQLString) },
+    amount: { type: GraphQLString },
   },
 });
 

@@ -15,10 +15,12 @@ const OpportunityMutations = {
       tags: { type: new graphql.GraphQLList(GraphQLString) },
       description: { type: GraphQLString },
       image: { type: GraphQLString },
+      type: { type: new GraphQLNonNull(GraphQLString) },
+      amount: { type: graphql.GraphQLInt },
     },
     resolve(
       parentValue,
-      { company, duration, jobTitle, description, image, area, tags }
+      { company, duration, jobTitle, description, image, area, tags, type, amount}
     ) {
       return OpportunityService.createOpportunity({
         company,
@@ -28,6 +30,8 @@ const OpportunityMutations = {
         area,
         tags,
         image,
+        type,
+        amount
       });
     },
   },
@@ -51,6 +55,7 @@ const OpportunityMutations = {
       area: { type: GraphQLString },
       tags: { type: new graphql.GraphQLList(GraphQLString) },
       image: { type: GraphQLString },
+      amount: { type: graphql.GraphQLInt },
     },
     resolve(parentValue, args) {
       return OpportunityService.updateOpportunity(args);

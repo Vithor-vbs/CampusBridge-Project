@@ -7,6 +7,20 @@ export interface Opportunity {
   area: string;
   tags: string[];
   image?: string;
+  type: string;
+  amount: number;
+}
+
+export interface DonationFormData {
+  jobTitle: string
+  company: string
+  description: string
+  area: string
+  duration: string
+  tags: string
+  image: string
+  amount: number
+  type?: string
 }
 
 export interface User {
