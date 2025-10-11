@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LoginBody.module.css";
 import { ButtonCTA } from "../../HomePage/ButtonCTA";
-import campusbridgeLogo from "../../../assets/CampusBridge-vectorized.svg";
+import unishareLogo from "../../../assets/unishare-logo-login.svg";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../../GraphQL/Mutations";
 import { useQuery } from "@apollo/client";
@@ -48,7 +48,7 @@ export const LoginBody: React.FC<FormProps> = () => {
   return (
     <section className={styles["form-container-box"]}>
       <div className={styles["form-container"]}>
-        <img src={campusbridgeLogo} alt="agency name and logo" />
+        <img style={{ paddingRight: '2rem' }} src={unishareLogo} alt="agency name and logo" />
         <form className={styles.form}>
           <div className={styles["form-group"]}>
             <label htmlFor="email">Email</label>
